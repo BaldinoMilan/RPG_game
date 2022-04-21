@@ -1,0 +1,28 @@
+Liste de toutes les idées:
+(je t'ai mis ce qque j'avais fait dans le truc juste histoire de voir comment j'avais fait,
+on les supprimeras après)
+
+mode de fonctionnement:
+- 9 zone très grandes, dont celle du centre contenant la ville principale avec marchands etc ... puis une plaine avec les monstres  de base
+- pour la map je pensais pour la plupart faire avec des 0 pour l'herbe (pour la mémoire) et un dictonnaire qui traduit  les composants de base(tout en laissant quelques
+types spéciaux dans le tableu (le dtype sert que pour les calculs sinon on s'en fout)). ex: dict = {0: "herbe" ou <class Block: Herbe1>}
+-  Une autre idée pour la map serait qu'elle contienne la valeur des couleurs des pixels
+- chaque zone serait une map et on change de zone en sortant de la matrice
+
+pvp:
+- combat tour par tour: attaque / compétence / item, pour chaque personnage
+- enemies seront comme des personnage mais il pourrait avoir seulement: attaque  / compétence
+
+class/ personnages:
+- j'avais créé un "CharacterLike" super() de tout les types de classes qui aurront leur particularité de base prédéfinies (évitant d'écrir énormément de statistique 
+pour instaurer un personnage.) Chaque personnage avait une armure de base et une arme pour éviter des bugs en combat. (Pour l'armure je n'avais fait que le plastron qui
+correspondait a toute l'armure(ce qui évite l'adittion de toutes les stattistiqus à chque tour ou combat.
+- J'avais fait  unn système de scaling pour les niveau pour tout mais je pense que mettre des point de compétences pourrait être pas mal.
+- Pour les armes je pense qu'on reste sur 5 rareté, 1 arme de base et armure de base par Class et plusieurs autre armes. Après pour les système de niveau d'arme, je ne
+sais pas si on améliore (à un forgeron par exemple) avec des matériaux comme j'avais fait (en fonction de leur effect en rapport avec les zones) ou bien autre chose,
+avec de l'exp de base.
+- pour l'exp je sais pas si l'on fait une fonction affine: ax + b ou bien exponnenciel du genre: 2,7 ** (lvl / 10) + b ?
+- enfin je pense que l'on devrai commencer par voir comment on creer tout, avant de faire comment commence l'histoire, premiere fonction dans le code de base etc, histoire
+de ne pas ce perdre.
+
+Désolé pour le pavé si t'as tout lu* 
