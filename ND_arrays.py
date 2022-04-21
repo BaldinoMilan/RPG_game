@@ -1,16 +1,5 @@
 from random import randint
 
-# définition des Erreurs
-Type_Error = {'AxisError': f"axis argument must be 1 or 0.", 
-'DtypeError': f"Use operation on Nd_array class need to have dtype placed on int or float",
-'OperantError': f"Operant on Nd_array class have to be an int or float",
-'ShapeError': f"reshape function must have a tupple with the same place",
-'InputError': f"you have to input same number of element that the Nd_array shape",
-'ArgError': f"function argument must be an object: <class Nd_array>",
-'FlShapeError': f"arrays must have the same number of lines",
-'ArrayError': f"One over two array have to be bigger or equal to the other"}
-
-
 # Classe Nd_array(fonctionne comme un dictionnaire)
 class Nd_array(dict):
     def __init__(self, shape, dtype=int) -> None:
@@ -481,9 +470,41 @@ class Nd_array(dict):
                                 array[i, k] = 1
                 return array
             else:
-                print(f"TypeError: ShapeError {Type_Error['FlShapeError']}")
+                TypeError("Both arrays must have a commun dimension")
         else:
-            print(f"TypeError: ArgError {Type_Error['ArgError']}")
+            raise TypeError("Function argument must be an object from the class Nd_array")
+    
+    def insert(self, value, shape = None):
+        if shape == None:
+            for i in range(self.shape[0]):
+                for k in range(self.shape[1]):
+                    self[i, k] = value
+
+        elif isinstance(shape, tuple):
+            for i in range(shape[0]):
+                for k in range(shape[1]):
+                    self[i, k] = value
+
+        else:
+            raise TypeError(f"Chosen shape must be a tuple with 2 arguments")
+    def replace(self, base_value, new_value, shape = None):
+        if shape == None:
+            for i in range(self.shape[0]):
+                for k in range(self.shape[1]):
+                    if self[i, k] == base_value:  
+                        self[i, k] = new_value
+                    else:
+                        pass
+
+        elif isinstance(shape, tuple):
+            for i in range(shape[0]):
+                for k in range(shape[1]):
+                    if self[i, k] == base_value:
+                        self[i, k] = new_value
+                    else:
+                        pass
+        else:
+            raise TypeError(f"Chosen shape must be a tuple with 2 arguments")
 
 def hstack(ndarray1, ndarray2): # rassemble horizontalement les deux matrices -> nd_array(())
     if isinstance(ndarray1, Nd_array) and isinstance(ndarray2, Nd_array):
@@ -500,9 +521,9 @@ def hstack(ndarray1, ndarray2): # rassemble horizontalement les deux matrices ->
             
             return finalarray
         else:
-            print(f"TypeError: FlShapeError {Type_Error['FlShapeError']}")
+            TypeError("Both array must have the same number of rows")
     else:
-        print(f"TypeError: ArgError {Type_Error['ArgError']}")
+        raise TypeError("Function argument must be an array")
 
 def vstack(ndarray1, ndarray2): # rassemble verticalement les deux matrices -> nd_array(())
     if isinstance(ndarray1, Nd_array) and isinstance(ndarray2, Nd_array):
@@ -519,14 +540,6 @@ def vstack(ndarray1, ndarray2): # rassemble verticalement les deux matrices -> n
             
             return finalarray
         else:
-            print(f"TypeError: FlShapeError {Type_Error['FlShapeError']}")
+            raise TypeError("Both array must have the same number of columns")
     else:
-        print(f"TypeError: ArgError {Type_Error['ArgError']}")
-  
-
-#E = Nd_array((5, 4))
-#E.instore(4)
-#D = Nd_array((2, 3))
-#D.instore(5)
-#F = E + D 
-#print(F)
+        raise TypeError("Function argument must be an array")
