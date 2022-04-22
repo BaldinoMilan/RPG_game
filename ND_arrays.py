@@ -1,5 +1,4 @@
 from random import randint
-
 # Classe Nd_array(fonctionne comme un dictionnaire)
 class Nd_array(dict):
     def __init__(self, shape, dtype=int) -> None:
@@ -31,7 +30,11 @@ class Nd_array(dict):
         for i in range(self.shape[0]):
             for j in range(self.shape[1]):
                 self[i, j] = randint(0, 1)
-
+    def randn(self):
+        for i in range(self.shape[0]):
+            for k in range(self.shape[1]):
+                self[i, k] = randint(-10000, 10000) / 10000
+                
     def arrange(self, axis=0, start=1, reverse=False): # rempli la matrice d'entiers consécutifs (point de départ défini)
         if reverse == False:
             bounty = start
@@ -481,12 +484,20 @@ class Nd_array(dict):
                     self[i, k] = value
 
         elif isinstance(shape, tuple):
-            for i in range(shape[0]):
-                for k in range(shape[1]):
-                    self[i, k] = value
-
+            if isinstance(shape[0], int) and isinstance(shape[1], int):
+                for i in range(shape[0]):
+                    for k in range(shape[1]):
+                        self[i, k] = value
+            
+            elif isinstance(shape[0], tuple) and isinstance(shape[1], tuple):
+                for i in range(shape[0][1] - shape[0][0]):
+                    for k in range(shape[1][1] - shape[1][0]):
+                        self[shape[0][0] + i, shape[1][0] + k]= value
+            else:
+                raise TypeError(f"Chosen shape must be a tuple with 2 arguments")
         else:
             raise TypeError(f"Chosen shape must be a tuple with 2 arguments")
+    
     def replace(self, base_value, new_value, shape = None):
         if shape == None:
             for i in range(self.shape[0]):
@@ -497,15 +508,27 @@ class Nd_array(dict):
                         pass
 
         elif isinstance(shape, tuple):
-            for i in range(shape[0]):
-                for k in range(shape[1]):
-                    if self[i, k] == base_value:
-                        self[i, k] = new_value
-                    else:
-                        pass
+            if isinstance(shape[0], int) and isinstance(shape[1], int): 
+                for i in range(shape[0]):
+                    for k in range(shape[1]):
+                        if self[i, k] == base_value:
+                            self[i, k] = new_value
+                        else:
+                            pass
+            elif isinstance(shape[0], tuple) and isinstance(shape[1], tuple):
+                for i in range(shape[0][1] - shape[0][0]):
+                    for k in range(shape[1][1] - shape[1][0]):
+                        if self[i, k] == base_value:
+                            self[shape[0][0] + i, shape[1][0] + k] = new_value
+                        else:
+                            pass
+            else:
+                raise TypeError(f"Chosen shape must be a tuple with 2 arguments")    
         else:
             raise TypeError(f"Chosen shape must be a tuple with 2 arguments")
-
+    def walls(self, value):
+        self.insert(value, ((1, self.shape[0] - 1), (1, self.shape[1] - 1)))
+        
 def hstack(ndarray1, ndarray2): # rassemble horizontalement les deux matrices -> nd_array(())
     if isinstance(ndarray1, Nd_array) and isinstance(ndarray2, Nd_array):
         
@@ -543,3 +566,4 @@ def vstack(ndarray1, ndarray2): # rassemble verticalement les deux matrices -> n
             raise TypeError("Both array must have the same number of columns")
     else:
         raise TypeError("Function argument must be an array")
+  
