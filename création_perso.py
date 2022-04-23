@@ -52,6 +52,7 @@ class character:
                 target.PV -= self.PAT 
                 if target.PV <= 0:
                     return f"{target.name} est mort"
-                 
+# tu devrais faire un: def move(): pour ffaire bouger le personnage
+# et un self.pos pour la position actuelle du personnage sur la map(ps j'ai créé une map fait moi des retours)
 
 os.system("pause")
