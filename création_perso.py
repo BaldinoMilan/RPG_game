@@ -7,8 +7,14 @@
 import os
 import Armure as arm
 import weapons as wea
-import ND_array as nd
+import ND_arrays as nd
 import Rpg_map as mp
+import capacitys as cap
+import food
+
+capacitys = {}
+
+food_available = [food.churros]
 
 #PV = Points de vie DE BASE
 #PAT = Points d'attaque DE BASE
@@ -19,16 +25,18 @@ import Rpg_map as mp
 #notemment sur les différentes attaques dispos etc... ne sont pas encore implémentés
 
 class character:
-    def __init__(self, PV, PAT, PDEF = 0, armor = {"helmet" : None, "chestplate" : None, "leggings" : None, "boots" : None}):
+    def __init__(self, PV, PAT, PDEF = 0, inv = [], armor = {"helmet" : None, "chestplate" : None, "leggings" : None, "boots" : None}):
         self.PV = PV 
         self.PVB = PV 
         self.PAT = PAT 
         self.PATB = PAT 
         self.PDEF = PDEF 
         self.armor = armor 
-        self.pos = mp.middle  
+        self.pos = mp.middle 
+        self.inv = inv  
         if self.name == "Carlos de Miguel":
             gamerule_churros = True 
+            inv.append("Churros")
 
     def equip_helmet(self, helmet_1):
         self.armor["helmet"] = arm.helmet(helmet_1) 
@@ -57,8 +65,16 @@ class character:
                     return f"{target.name} est mort"
     def move(self, x, y):
         self.pos = (self.pos[0] + x, self.pos[1] + y)
-        # on appeleras cette fonction avec les touches du claviers, je pense savoir comment faire
-        # peut être mettre un système de mob aléatoire à chaque mouvement ?
+        
+    def eat(self, food_to_eat):
+        if food_to_eat in food_available:
+            food.food(food_to_eat)
+
+        else:
+            return f"{food_to_eat} n'est pas dans le jeu"
+        
+        # on appeleras cette fonction avec les touches du claviers, je pense savoir comment faire 
+        # peut être mettre un système de mob aléatoire à chaque mouvement ? /// en vrai de ouf
         
 # est-ce qu'on fait un système dd'inventaire aussi ?       
 os.system("pause")

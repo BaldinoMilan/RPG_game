@@ -1,2 +1,3 @@
 # RPG_game
-ok lets go 
+Little RPG game made by PitiPipouSauvage and BaldinoMilan
+Have fun !
