@@ -32,7 +32,7 @@ class character:
         self.PATB = PAT 
         self.PDEF = PDEF 
         self.armor = armor 
-        self.pos = mp.middle 
+        self.pos = (49, 49) 
         self.inv = inv  
         if self.name == "Carlos de Miguel":
             gamerule_churros = True 
