@@ -12,18 +12,6 @@ def instore_map():
     for i in range(3):
         for j in range(3):
             Map[i, j] = nd.Nd_array((100, 100))
-            Map[i, j].zeros()
+            Map[i, j].instore((255, 0, 0))
 
-# j'avais deux idées pour remplir la map, soit 0 c'est l'herbe
-# pour la mémoir
-# Ou alors on met un tuple contenant la couleur de la case (ex pourr l'herbe:
-# (0, 255, 0)) 
-
-instore_map()           
-
-Map[1, 1].insert(1, ((34, 64), (34, 64))) # c'est la zone 0
-# ce que j'ai fait la c'est que les 30 block autour du spawn sont de la brique pour une ville par exemple
-# la brique serai 1
-
-#on rajoutera des items etc 
-# et il faudrais peut etre faire un truc de drop aléatoire de combat quand le personnage se déplace
+insore_map()
