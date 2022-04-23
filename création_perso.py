@@ -7,6 +7,8 @@
 import os
 import Armure as arm
 import weapons as wea
+import ND_array as nd
+import Rpg_map as mp
 
 #PV = Points de vie DE BASE
 #PAT = Points d'attaque DE BASE
@@ -24,6 +26,7 @@ class character:
         self.PATB = PAT 
         self.PDEF = PDEF 
         self.armor = armor 
+        self.pos = 0 
         if self.name == "Carlos de Miguel":
             gamerule_churros = True 
 
@@ -52,7 +55,5 @@ class character:
                 target.PV -= self.PAT 
                 if target.PV <= 0:
                     return f"{target.name} est mort"
-# tu devrais faire un: def move(): pour ffaire bouger le personnage
-# et un self.pos pour la position actuelle du personnage sur la map(ps j'ai créé une map fait moi des retours)
 
 os.system("pause")
