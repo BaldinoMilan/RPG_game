@@ -26,7 +26,7 @@ class character:
         self.PATB = PAT 
         self.PDEF = PDEF 
         self.armor = armor 
-        self.pos = 0 
+        self.pos = mp.middle  
         if self.name == "Carlos de Miguel":
             gamerule_churros = True 
 
@@ -55,5 +55,10 @@ class character:
                 target.PV -= self.PAT 
                 if target.PV <= 0:
                     return f"{target.name} est mort"
-
+    def move(self, x, y):
+        self.pos = (self.pos[0] + x, self.pos[1] + y)
+        # on appeleras cette fonction avec les touches du claviers, je pense savoir comment faire
+        # peut être mettre un système de mob aléatoire à chaque mouvement ?
+        
+# est-ce qu'on fait un système dd'inventaire aussi ?       
 os.system("pause")
