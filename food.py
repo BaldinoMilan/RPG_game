@@ -1,5 +1,4 @@
 import os
-import capacitys as cap 
 import création_perso as crea
 
 advantages = ["PV", "PDEF"]
