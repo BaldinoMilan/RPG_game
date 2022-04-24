@@ -25,7 +25,7 @@ food_available = [food.churros]
 #notemment sur les différentes attaques dispos etc... ne sont pas encore implémentés
 
 class character:
-    def __init__(self, PV, PAT, PDEF = 0, inv = [], armor = {"helmet" : None, "chestplate" : None, "leggings" : None, "boots" : None}):
+    def __init__(self, PV, PAT, PDEF = 0, effect = [], inv = [], armor = {"helmet" : None, "chestplate" : None, "leggings" : None, "boots" : None}):
         self.PV = PV 
         self.PVB = PV 
         self.PAT = PAT 
@@ -33,7 +33,9 @@ class character:
         self.PDEF = PDEF 
         self.armor = armor 
         self.pos = (49, 49) 
-        self.inv = inv  
+        self.inv = inv 
+        self.effect = effect
+        
         if self.name == "Carlos de Miguel":
             gamerule_churros = True 
             inv.append("Churros")
