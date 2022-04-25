@@ -11,12 +11,12 @@ import weapons as wea
 import ND_arrays as nd
 import Rpg_map as mp
 import capacitys as cap
-import food
 import monster as mob
 
 capacitys = {}
 
-food_available = [food.churros]
+advantages = ["PV", "PDEF"]
+            
 
 #PV = Points de vie DE BASE
 #PAT = Points d'attaque DE BASE
@@ -27,7 +27,8 @@ food_available = [food.churros]
 #notemment sur les différentes attaques dispos etc... ne sont pas encore implémentés
 
 class character:
-    def __init__(self, PV, PAT, PDEF = 0, effect = [], inv = [], armor = {"helmet" : None, "chestplate" : None, "leggings" : None, "boots" : None}):
+    def __init__(self, name, PV, PAT, PDEF = 0, effect = [], inv = [], armor = {"helmet" : None, "chestplate" : None, "leggings" : None, "boots" : None}):
+        self.name = name
         self.PV = PV 
         self.PVB = PV 
         self.PAT = PAT 
@@ -72,7 +73,12 @@ class character:
         
     def eat(self, food_to_eat):
         if food_to_eat in food_available:
-            food.food(food_to_eat)
+            food(food_to_eat)
+            if food_to_eat.adv == "PV":
+                self.PV += food_to_eat.ammount
+            
+            elif food_to_eat.adv == "PDEF":
+                self.PV += food_to_eat.ammount
 
         else:
             return f"{food_to_eat} n'est pas dans le jeu"
@@ -80,10 +86,19 @@ class character:
         # on appeleras cette fonction avec les touches du claviers, je pense savoir comment faire 
         # peut être mettre un système de mob aléatoire à chaque mouvement ? /// en vrai de ouf
         
-# est-ce qu'on fait un système dd'inventaire aussi ?  
+# est-ce qu'on fait un système dd'inventaire aussi ?
+
+class food:
+    def __init__(self, adv, ammount):
+        self.adv = adv
+        self.ammount = ammount 
+
+            
+churros = food("PV", 200)
+food_available = [churros] 
 
 test_bull = mob.bull(10, 2, 3, None, None, 3)
-heathcliff = character(100, 5, 0, [], [food.churros])
+heathcliff = character("Heathcliff", 100, 5, 0, [], [churros])
 
 print(heathcliff.PV)
 test_bull.charge(heathcliff)

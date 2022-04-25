@@ -1,11 +1,12 @@
 class monster:
-    def __init__(self, PV, PAT, zone, type, name = None, lvl = 1):
+    def __init__(self, PV, PAT, zone, type, name = None, lvl = 1, PDEF = 0):
         self.PV = PV 
         self.PAT = PAT 
         self.zone = zone
         self.lvl = lvl 
         self.name = name 
-        self.type = type 
+        self.type = type
+        self.PDEF = PDEF 
 
     def attack(self, target):
         target.PDEF -= self.PAT 
