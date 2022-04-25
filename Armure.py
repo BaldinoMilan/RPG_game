@@ -1,5 +1,3 @@
-import os 
-
 class helmet:
     def __init__(self, name, rarety, PDEF, zone):
         self.name = name 
@@ -27,5 +25,3 @@ class boots:
         self.rarety = rarety 
         self.PDEF = PDEF 
         self.zone = zone 
-
-os.system("pause")

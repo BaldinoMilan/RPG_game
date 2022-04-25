@@ -4,6 +4,7 @@
 #######          IMPLEMENTES DANS CE SCRIPT          #######
 ############################################################
 
+from email.policy import default
 import os
 import Armure as arm
 import weapons as wea
@@ -11,6 +12,7 @@ import ND_arrays as nd
 import Rpg_map as mp
 import capacitys as cap
 import food
+import monster as mob
 
 capacitys = {}
 
@@ -78,5 +80,14 @@ class character:
         # on appeleras cette fonction avec les touches du claviers, je pense savoir comment faire 
         # peut être mettre un système de mob aléatoire à chaque mouvement ? /// en vrai de ouf
         
-# est-ce qu'on fait un système dd'inventaire aussi ?       
+# est-ce qu'on fait un système dd'inventaire aussi ?  
+
+test_bull = mob.bull(10, 2, 3, None, None, 3)
+heathcliff = character(100, 5, 0, [], [food.churros])
+
+print(heathcliff.PV)
+test_bull.charge(heathcliff)
+print(heathcliff.PV)
+heathcliff.attack(test_bull, None)
+     
 os.system("pause")

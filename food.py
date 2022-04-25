@@ -1,4 +1,3 @@
-import os
 import création_perso as crea
 
 advantages = ["PV", "PDEF"]
@@ -15,6 +14,3 @@ class food:
 
             
 churros = food("PV", 200)
-        
-
-os.system("pause")

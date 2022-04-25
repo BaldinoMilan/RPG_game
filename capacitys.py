@@ -1,4 +1,3 @@
-import os 
 import création_perso as crea 
 
 class capacity:
@@ -51,6 +50,3 @@ class capacity:
                     
                 elif self.empty == liste[4]:
                     crea.target.PDEF += self.ammount
-        
-            
-os.system("pause")

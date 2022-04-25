@@ -1,7 +1,5 @@
-import os
-
 class monster:
-    def __init__(self, PV, PAT, zone, name, type, lvl = 1):
+    def __init__(self, PV, PAT, zone, type, name = None, lvl = 1):
         self.PV = PV 
         self.PAT = PAT 
         self.zone = zone
@@ -33,5 +31,3 @@ class bull(monster):
             
         else:
             pass
-          
-os.system("pause")
