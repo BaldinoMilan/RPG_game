@@ -11,6 +11,8 @@ import monster as mob
 test_bull = mob.bull(10, 2, 3, None, None, 3)
 heathcliff = crea.character("Heathcliff", 100, 5, 0, [], [crea.churros])
 
+basic_armor = arm.armor("Basic Armor", "common", )
+
 print(heathcliff.PV)
 test_bull.charge(heathcliff)
 print(heathcliff.PV)

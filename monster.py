@@ -10,7 +10,7 @@ class monster:
 
     def attack(self, target):
         target.PDEF -= self.PAT 
-        if target < 0:
+        if target.PDEF < 0:
             target.PV += target.PDEF
             target.PDEF = 0
         

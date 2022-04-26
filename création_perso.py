@@ -26,7 +26,7 @@ advantages = ["PV", "PDEF"]
 #notemment sur les différentes attaques dispos etc... ne sont pas encore implémentés
 
 class character:
-    def __init__(self, name, PV, PAT, PDEF = 0, effect = [], inv = [], armor = {"helmet" : None, "chestplate" : None, "leggings" : None, "boots" : None}):
+    def __init__(self, name, PV, PAT, PDEF = 0, effect = [], inv = [], armor = None):
         self.name = name
         self.PV = PV 
         self.PVB = PV 
@@ -42,31 +42,18 @@ class character:
             gamerule_churros = True 
             inv.append("Churros")
 
-    def equip_helmet(self, helmet_1):
-        self.armor["helmet"] = arm.helmet(helmet_1) 
-    
-    def equip_chestplate(self, chestplate_1):
-        self.armor["chestplate"] = arm.chestplate(chestplate_1)
-    
-    def equip_leggings(self, leggings_1):
-        self.armor["leggings"] = arm.leggings(leggings_1)
-    
-    def equip_boots(self, boots_1):
-        self.armor["boots"] = arm.boots(boots_1)
+    def equip_helmet(self, armor_1):
+        self.armor = arm.armor(armor_1) 
         
     def attack(self, target, technic):
-            if target.PDEF > 0:
-                 target.PDEF -= self.PAT   #à therme on fera target.PDEF -= self.PAT + dégats de l'attaque 
-                 if target.PDEF < 0:
-                    target.PV += target.PDEF
-                    target.PDEF = 0
-                    if target.PV <= 0:
-                        return f"{target.name} est mort"
+        target.PDEF -= self.PAT 
+        if target.PDEF < 0:
+            target.PV += target.PDEF
+            target.PDEF = 0
+        
+        else:
+            pass 
                     
-            elif target.PDEF == 0:
-                target.PV -= self.PAT 
-                if target.PV <= 0:
-                    return f"{target.name} est mort"
     def move(self, x, y):
         self.pos = (self.pos[0] + x, self.pos[1] + y)
         
