@@ -42,8 +42,9 @@ class character:
             gamerule_churros = True 
             inv.append("Churros")
 
-    def equip_helmet(self, armor_1):
-        self.armor = arm.armor(armor_1) 
+    def equip_armor(self, armor_1):
+        self.armor = armor_1 
+        self.PDEF += armor_1.PDEF
         
     def attack(self, target, technic):
         target.PDEF -= self.PAT 
@@ -79,6 +80,4 @@ class food:
         self.adv = adv
         self.ammount = ammount 
 
-            
-churros = food("PV", 200)
-food_available = [churros] 
+food_available = []

@@ -4,3 +4,6 @@ class armor:
         self.rarety = rarety
         self.PDEF = PDEF 
         self.zone = zone 
+        
+    def __repr__(self):
+        return f"name : {self.name}"
