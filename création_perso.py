@@ -84,6 +84,6 @@ class character:
 # est-ce qu'on fait un système dd'inventaire aussi ?
 
 class paladin(character):
-    def retaliation(self):
+    def parade(self):
         if self.in_fight and self.attacked:
             pass
