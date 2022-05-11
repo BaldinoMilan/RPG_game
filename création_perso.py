@@ -45,6 +45,7 @@ class character:
         self.effect = effect
         self.attacked = attacked
         self.in_fight = in_fight
+        self.attacker = None
         
         if self.name == "Carlos de Miguel":
             gamerule_churros = True 
@@ -84,6 +85,16 @@ class character:
 # est-ce qu'on fait un système dd'inventaire aussi ?
 
 class paladin(character):
-    def parade(self):
+    def parade(self, attacker):
         if self.in_fight and self.attacked:
-            pass
+            attacker = self.attacker 
+            attacker.PAT += self.PV
+            if self.PV > self.PVB:
+                self.PV -= self.PVB 
+                self.PDEF = self.PV 
+                self.PV = self.PVB
+    
+    def critical(self, target):
+        target.PDEF -= self.PAT * 1.75
+        if target.PDEF < 0:
+            target.PV -= target.PDEF

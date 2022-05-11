@@ -7,12 +7,14 @@ class monster:
         self.name = name 
         self.type = type
         self.PDEF = PDEF 
+        self.attacker = self
 
     def attack(self, target):
         target.PDEF -= self.PAT 
         if target.PDEF < 0:
             target.PV += target.PDEF
             target.PDEF = 0
+            target.attacker = self.attacker
         
         else:
             pass 
@@ -20,6 +22,7 @@ class monster:
 class goblin(monster):
     def poison(self, target):
         target.effect = "poison"
+        target.attacker = self.attacker
         
         
 class bull(monster):
@@ -29,6 +32,7 @@ class bull(monster):
         if target.PDEF < 0:
             target.PV += target.PDEF
             target.PDEF = 0 
+            target.attacker = self.attacker
             
         else:
             pass
